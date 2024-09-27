@@ -1,3 +1,7 @@
 {
-  "Welcome": "Welcome to Buckshot Roulette - Devilslayer! \n The purpose of this console application is to give you the optimal play to beat the devil, so that you can reach absurd level of points in Double or Nothing! \n This application is a coding project that I hope will help you improve on the gam"
+  "Intro": "Welcome to Buckshot Roulette - Devilslayer! \n The purpose of this console application is to give you the optimal play to beat the devil, so that you can reach absurd level of points in Double or Nothing! \n This application is a coding project that I hope will help you improve on the game",
+  "LineBracket": "-----------------------------------------------------------------------------------------------------------------",
+  "NewRoundStart": "Start a new Round",
+  "ThankAndLeave": "Thank you for playing! Press any button to leave the program",
+  "ChooseOption": "Choose an option:"
 }

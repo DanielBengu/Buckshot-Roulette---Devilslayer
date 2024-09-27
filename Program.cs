@@ -1,45 +1,45 @@
-﻿class Program
+﻿using Buckshot_Roulette_Devilslayer.Language;
+
+namespace Buckshot_Roulette_Devilslayer.Main
 {
-    static void Main()
+    class Program
     {
-        string[] languagesArray = ["EN", "IT"];
-        string languagesString = string.Join("/", languagesArray);
-
-        Console.WriteLine($"Hello! Choose a language -> {languagesString}");
-
-        LanguageChoice language = GetLanguage(languagesString);
-        Console.WriteLine($"Language chosen: {language}");
-
-        Console.ReadKey();
-    }
-
-    static LanguageChoice GetLanguage(string languagesString)
-    {
-        LanguageChoice language = LanguageChoice.Default;
-        string? languageText = string.Empty;
-        do
+        static void Main()
         {
-            languageText = Console.ReadLine();
-            if (string.IsNullOrEmpty(languageText))
+            Console.Title = "Buckshot Roulette - Devil Slayer";
+            string[] languagesArray = ["EN", "IT"];
+            string languagesString = string.Join("/", languagesArray);
+
+            Console.WriteLine($"Hello! Choose a language -> {languagesString}");
+
+            LanguageChoice language = LanguageService.GetLanguage(languagesString);
+            Dictionary<string, string>? _textDict = LanguageService.GetTextDictionary(language);
+            if( _textDict == null) 
             {
-                Console.WriteLine($"Please choose a language -> {languagesString}");
-                continue;
+                Console.WriteLine("Unknown error during language setting, please restart and choose another language");
+                Console.ReadKey();
+                return;
             }
 
-            if (!Enum.TryParse(languageText, out language))
+            Console.WriteLine($"Language chosen: {language}");
+            Console.WriteLine(_textDict[TextOptions.Intro.ToString()]);
+            Console.WriteLine(_textDict[TextOptions.LineBracket.ToString()]);
+
+            HandleGame(_textDict);
+
+            Console.WriteLine(_textDict[TextOptions.ThankAndLeave.ToString()]);
+            Console.ReadKey();
+        }
+
+        static void HandleGame(Dictionary<string, string> _textDict)
+        {
+            bool keepPlaying = true;
+
+            while(keepPlaying)
             {
-                Console.WriteLine($"Invalid language, please choose from -> {languagesString}");
+                Console.WriteLine(_textDict[TextOptions.ChooseOption.ToString()]);
+                keepPlaying = false;
             }
-
-        } while (language == LanguageChoice.Default);
-
-        return language;
-    }
-
-    enum LanguageChoice
-    {
-        Default,
-        EN,
-        IT
+        }
     }
 }
